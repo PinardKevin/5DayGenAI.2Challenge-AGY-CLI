@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini AI Chatbot</title>
+    <!-- Google Fonts: Outfit and Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="glow-bg">
+        <div class="glow-sphere sphere-1"></div>
+        <div class="glow-sphere sphere-2"></div>
+    </div>
+    
+    <div class="chat-container">
+        <!-- Header -->
+        <header class="chat-header">
+            <div class="header-info">
+                <div class="bot-avatar">
+                    <i data-lucide="sparkles" class="icon-sparkles"></i>
+                </div>
+                <div>
+                    <h1>Gemini AI</h1>
+                    <div class="status-indicator">
+                        <span class="pulse-dot"></span>
+                        <span class="status-text">Online (Gemini 2.5 Flash)</span>
+                    </div>
+                </div>
+            </div>
+            <button class="clear-btn" id="clear-chat" title="Clear Conversation">
+                <i data-lucide="trash-2"></i>
+            </button>
+        </header>
+
+        <!-- Messages Area -->
+        <main class="chat-messages" id="messages-container">
+            <div class="welcome-message">
+                <div class="welcome-icon">
+                    <i data-lucide="bot" size="48"></i>
+                </div>
+                <h2>Welcome to Gemini Chat</h2>
+                <p>Ask anything! I can help you write code, brainstorm ideas, analyze text, or just chat.</p>
+                <div class="preset-suggestions">
+                    <button class="preset-btn" onclick="sendPreset('Explain the concept of quantum computing simply.')">
+                        <i data-lucide="cpu" size="16"></i> Quantum Computing
+                    </button>
+                    <button class="preset-btn" onclick="sendPreset('Write a python function to check if a number is prime.')">
+                        <i data-lucide="code-2" size="16"></i> Python Primality Test
+                    </button>
+                    <button class="preset-btn" onclick="sendPreset('Brainstorm 5 creative name ideas for an eco-friendly tech startup.')">
+                        <i data-lucide="lightbulb" size="16"></i> Startup Names
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Input Area -->
+        <footer class="chat-input-container">
+            <form id="chat-form" class="chat-form">
+                <textarea 
+                    id="user-input" 
+                    placeholder="Type your message here..." 
+                    rows="1"
+                    required
+                ></textarea>
+                <button type="submit" class="send-btn" id="send-button" title="Send Message">
+                    <i data-lucide="send"></i>
+                </button>
+            </form>
+        </footer>
+    </div>
+
+    <script src="/static/chat.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
