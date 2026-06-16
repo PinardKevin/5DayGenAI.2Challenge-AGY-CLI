@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigQuery Release Notes Tracker & Tweet Composer</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Track and share BigQuery release notes. Features dynamic search, tag filters, and an interactive Tweet composer.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/static/style.css">
+    
+    <!-- Script -->
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <div class="glass-bg"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-box">
+                <i class="fa-solid fa-database logo-icon"></i>
+                <span class="logo-text">GCP Analytics</span>
+            </div>
+            <h1>BigQuery Release Notes</h1>
+            <p class="subtitle">Track official update feeds, filter categories, and share key developer releases directly to X / Twitter.</p>
+            
+            <div class="header-actions">
+                <button id="btn-refresh" class="btn-primary" title="Fetch latest feed updates">
+                    <i id="spinner" class="fa-solid fa-arrows-rotate"></i>
+                    <span>Refresh Feed</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Search & Filter Controls -->
+        <section class="controls-card glass-card">
+            <div class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="search-input" placeholder="Search keywords (e.g. Gemini, SQL, pricing, storage)...">
+            </div>
+            <div class="filter-wrapper">
+                <i class="fa-solid fa-filter filter-icon"></i>
+                <select id="category-filter">
+                    <option value="ALL">All Categories</option>
+                    <option value="FEATURE">Features</option>
+                    <option value="CHANGED">Changes</option>
+                    <option value="FIXED">Fixes</option>
+                    <option value="DEPRECATED">Deprecated</option>
+                    <option value="UPDATE">General Updates</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Main Release Notes List -->
+        <main class="notes-section">
+            <div id="notes-list" class="notes-grid">
+                <!-- Javascript will populate cards here -->
+            </div>
+            
+            <!-- Empty/Error State -->
+            <div id="empty-state" class="empty-state hidden">
+                <i class="fa-solid fa-folder-open empty-icon"></i>
+                <h3 id="empty-title">No Release Notes Found</h3>
+                <p id="empty-message">Try adjusting your filters or search keywords, or click Refresh Feed.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>BigQuery Release Notes Feed fetched from official Google Cloud RSS channels.</p>
+        </footer>
+    </div>
+
+    <!-- Interactive Tweet Modal -->
+    <div id="tweet-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2><i class="fa-brands fa-x-twitter"></i> Compose Tweet</h2>
+                <button id="btn-close-modal" class="btn-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="update-preview-box">
+                    <div class="preview-badge" id="modal-badge">Feature</div>
+                    <div class="preview-date" id="modal-date">June 15, 2026</div>
+                    <div class="preview-text" id="modal-preview-text">Release update content snippet goes here...</div>
+                </div>
+
+                <div class="composer-container">
+                    <label for="tweet-textarea">Customize Tweet text:</label>
+                    <textarea id="tweet-textarea" rows="5" maxlength="350" placeholder="What's happening?"></textarea>
+                    
+                    <div class="composer-meta">
+                        <div class="char-counter" id="char-counter">0 / 280</div>
+                        <div class="char-warninghidden" id="char-warning"><i class="fa-solid fa-circle-exclamation"></i> Exceeds Twitter character limit!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="btn-cancel-tweet" class="btn-secondary">Cancel</button>
+                <button id="btn-publish-tweet" class="btn-tweet">
+                    <i class="fa-brands fa-x-twitter"></i> Publish to X
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
